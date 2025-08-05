@@ -22,7 +22,7 @@ This project was built using a modern and robust tech stack:
 
 ## Live Demo
 
-**Live Link:** [**Your Deployed URL Will Go Here**](https://)
+**Live Link:** [**Click Me**](https://geo-temporal-dashboard-three.vercel.app/)
 
 ## Setup and Run Instructions
 
