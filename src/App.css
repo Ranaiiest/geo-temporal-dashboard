@@ -1,38 +1,36 @@
+/* src/App.css */
 
-
+/* ==========================================================================
+   Base Layout & Theme
+   ========================================================================== */
 .app-container {
   height: 100vh;
-  overflow: hidden; 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-
 .app-header {
   background: #141414 !important;
   padding: 0 !important;
   border-bottom: 1px solid #303030 !important;
   height: auto !important;
   line-height: normal !important;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
-
 .app-body {
-  flex-grow: 1; 
-  overflow: hidden; 
+  flex-grow: 1;
+  overflow: hidden;
 }
-
 .app-sider {
   background: #141414 !important;
   border-right: 1px solid #303030 !important;
-  overflow-y: auto; 
+  overflow-y: auto;
   color: white;
 }
-
 .app-content {
   margin: 0;
   position: relative;
 }
-
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -42,7 +40,31 @@
   background-color: #1d232a;
 }
 
+/* ==========================================================================
+   NEW: Mobile Responsiveness
+   ========================================================================== */
+.mobile-menu-button {
+  position: absolute !important;
+  top: 10px;
+  left: 10px;
+  z-index: 1000; /* Ensure it's above the map */
+}
+.ant-drawer-header {
+  background: #141414 !important;
+}
+.ant-drawer-title {
+  color: white !important;
+}
+.ant-drawer-close {
+  color: white !important;
+}
+.ant-drawer-body {
+  background: #141414 !important;
+}
 
+/* ==========================================================================
+   Guaranteed Visible Slider
+   ========================================================================== */
 .custom-visible-slider .ant-slider-rail {
   background-color: #434343 !important;
   height: 6px !important;
@@ -63,15 +85,16 @@
   box-shadow: 0 0 0 5px rgba(22, 119, 255, 0.2) !important;
 }
 
-
-
+/* ==========================================================================
+   Manual Dark Theme for Other Ant Design Components
+   ========================================================================== */
+/* ... (rest of the CSS remains the same) ... */
 .ant-typography, .ant-typography a {
   color: rgba(255, 255, 255, 0.85);
 }
 .ant-typography.ant-typography-secondary {
   color: rgba(255, 255, 255, 0.45);
 }
-
 .ant-list-item {
   border-bottom: 1px solid #303030 !important;
 }
@@ -82,7 +105,6 @@
   background-color: #1677ff;
   border-color: #1677ff;
 }
-
 .ant-popover {
   background-color: #1f1f1f !important;
 }

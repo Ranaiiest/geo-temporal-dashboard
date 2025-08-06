@@ -1,4 +1,4 @@
-
+// src/components/timeline/TimelineSlider.tsx
 import { Slider, Col, Row, Tooltip, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { setTimeRange } from '../../store/slices/timelineSlice';
@@ -23,7 +23,6 @@ export function TimelineSlider() {
   const sliderValueStart = differenceInHours(parseISO(selectedStart), windowStartDate);
   const sliderValueEnd = differenceInHours(parseISO(selectedEnd), windowStartDate);
 
-  // Calculate the duration of the selected interval.
   const intervalDuration = differenceInHours(parseISO(selectedEnd), parseISO(selectedStart)) + 1;
 
   const handleSliderChange = (value: number[]) => {
@@ -42,7 +41,7 @@ export function TimelineSlider() {
     for (const poly of polygons) {
         dispatch(fetchPolygonData(poly.id));
     }
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedStart, selectedEnd, dispatch]);
 
 
@@ -55,31 +54,19 @@ export function TimelineSlider() {
   };
 
   return (
-    
-    <div style={{ padding: '8px 24px', color: 'white' }}>
-      <Row align="middle" gutter={16}>
-        <Col span={4} style={{ textAlign: 'center' }}>
-          
-          <Text type="secondary" style={{ fontSize: '12px' }}>Start</Text>
-          <div>{format(parseISO(selectedStart), 'MMM d')}</div>
-          <div style={{ fontSize: '12px' }}>{format(parseISO(selectedStart), 'HH:00')}</div>
+    <div style={{ padding: '8px 16px', color: 'white' }}>
+      <Row align="middle" gutter={8}>
+        <Col span={5} style={{ textAlign: 'center' }}>
+          {/* THE FIX IS HERE: Reduced font sizes for mobile readability */}
+          <Text type="secondary" style={{ fontSize: '11px' }}>Start</Text>
+          <div style={{ fontSize: '12px', fontWeight: 'bold' }}>{format(parseISO(selectedStart), 'MMM d')}</div>
+          <div style={{ fontSize: '11px' }}>{format(parseISO(selectedStart), 'HH:00')}</div>
         </Col>
-        <Col span={16}>
-          
-          <Row justify="space-between" style={{ marginBottom: '-8px' }}>
+        <Col span={14}>
+          <Row justify="center" style={{ marginBottom: '-12px' }}>
             <Col>
-              <Text type="secondary" style={{ fontSize: '12px' }}>
-                {format(windowStartDate, 'MMM d, yyyy')}
-              </Text>
-            </Col>
-            <Col>
-              <Text strong style={{ color: '#1677ff' }}>
+              <Text strong style={{ color: '#1677ff', fontSize: '12px' }}>
                 {intervalDuration} Hour{intervalDuration > 1 ? 's' : ''} Selected
-              </Text>
-            </Col>
-            <Col>
-              <Text type="secondary" style={{ fontSize: '12px' }}>
-                {format(windowEndDate, 'MMM d, yyyy')}
               </Text>
             </Col>
           </Row>
@@ -93,12 +80,24 @@ export function TimelineSlider() {
             tooltip={{ formatter: tooltipFormatter }}
             step={1}
           />
+          <Row justify="space-between" style={{ marginTop: '-12px', padding: '0 4px' }}>
+            <Col>
+              <Text type="secondary" style={{ fontSize: '10px' }}>
+                {format(windowStartDate, 'MMM d')}
+              </Text>
+            </Col>
+            <Col>
+              <Text type="secondary" style={{ fontSize: '10px' }}>
+                {format(windowEndDate, 'MMM d')}
+              </Text>
+            </Col>
+          </Row>
         </Col>
-        <Col span={4} style={{ textAlign: 'center' }}>
-          
-          <Text type="secondary" style={{ fontSize: '12px' }}>End</Text>
-          <div>{format(parseISO(selectedEnd), 'MMM d')}</div>
-          <div style={{ fontSize: '12px' }}>{format(parseISO(selectedEnd), 'HH:00')}</div>
+        <Col span={5} style={{ textAlign: 'center' }}>
+          {/* THE FIX IS HERE: Reduced font sizes for mobile readability */}
+          <Text type="secondary" style={{ fontSize: '11px' }}>End</Text>
+          <div style={{ fontSize: '12px', fontWeight: 'bold' }}>{format(parseISO(selectedEnd), 'MMM d')}</div>
+          <div style={{ fontSize: '11px' }}>{format(parseISO(selectedEnd), 'HH:00')}</div>
         </Col>
       </Row>
     </div>

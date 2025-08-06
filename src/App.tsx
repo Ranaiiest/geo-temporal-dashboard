@@ -1,7 +1,9 @@
-import React from 'react';
-import { Layout, Spin } from 'antd';
+import React, { useState } from 'react';
+import { Layout, Spin, Button, Drawer } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { TimelineSlider } from './components/timeline/TimelineSlider';
 import { Sidebar } from './components/sidebar/Sidebar';
+import { useWindowSize } from './hooks/useWindowSize'; // Import our new hook
 import './App.css';
 
 const { Header, Sider, Content } = Layout;
@@ -11,17 +13,55 @@ const MapDashboard = React.lazy(() =>
 );
 
 function App() {
+  // Get the window width from our custom hook.
+  const { width } = useWindowSize();
+  const isMobile = width < 768; // Define our breakpoint for mobile devices.
+
+  // State to control the visibility of the drawer on mobile.
+  const [drawerVisible, setDrawerVisible] = useState(false);
+
+  const handleDrawerClose = () => {
+    setDrawerVisible(false);
+    // This is a small trick to tell Leaflet to resize itself after the drawer closes,
+    // ensuring the map is not distorted.
+    window.dispatchEvent(new Event('resize'));
+  };
+
+  const sidebarContent = <Sidebar />;
+
   return (
-    // root class to control the overall page layout
     <Layout className="app-container">
       <Header className="app-header">
         <TimelineSlider />
       </Header>
-      {/* class to the body layout (sider + content) */}
-      <Layout className="app-body"> 
-        <Sider width={350} className="app-sider">
-          <Sidebar />
-        </Sider>
+      <Layout className="app-body">
+        {isMobile ? (
+          // --- MOBILE LAYOUT ---
+          <>
+            <Button
+              className="mobile-menu-button"
+              type="primary"
+              shape="circle"
+              icon={<MenuOutlined />}
+              onClick={() => setDrawerVisible(true)}
+            />
+            <Drawer
+              title="Controls"
+              placement="left"
+              onClose={handleDrawerClose}
+              open={drawerVisible}
+              bodyStyle={{ padding: 0 }}
+              width={320}
+            >
+              {sidebarContent}
+            </Drawer>
+          </>
+        ) : (
+          // --- DESKTOP LAYOUT ---
+          <Sider width={350} className="app-sider">
+            {sidebarContent}
+          </Sider>
+        )}
         <Content className="app-content">
           <React.Suspense 
             fallback={
