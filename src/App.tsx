@@ -15,15 +15,14 @@ const MapDashboard = React.lazy(() =>
 function App() {
   // Get the window width from our custom hook.
   const { width } = useWindowSize();
-  const isMobile = width < 768; // Define our breakpoint for mobile devices.
+  const isMobile = width < 768; // breakpoint for mobile devices.
 
   // State to control the visibility of the drawer on mobile.
   const [drawerVisible, setDrawerVisible] = useState(false);
 
   const handleDrawerClose = () => {
     setDrawerVisible(false);
-    // This is a small trick to tell Leaflet to resize itself after the drawer closes,
-    // ensuring the map is not distorted.
+    
     window.dispatchEvent(new Event('resize'));
   };
 

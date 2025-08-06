@@ -1,4 +1,3 @@
-/* src/App.css */
 
 /* ==========================================================================
    Base Layout & Theme
@@ -47,7 +46,7 @@
   position: absolute !important;
   top: 10px;
   left: 10px;
-  z-index: 1000; /* Ensure it's above the map */
+  z-index: 1000; 
 }
 .ant-drawer-header {
   background: #141414 !important;
@@ -62,9 +61,7 @@
   background: #141414 !important;
 }
 
-/* ==========================================================================
-   Guaranteed Visible Slider
-   ========================================================================== */
+
 .custom-visible-slider .ant-slider-rail {
   background-color: #434343 !important;
   height: 6px !important;
@@ -85,10 +82,7 @@
   box-shadow: 0 0 0 5px rgba(22, 119, 255, 0.2) !important;
 }
 
-/* ==========================================================================
-   Manual Dark Theme for Other Ant Design Components
-   ========================================================================== */
-/* ... (rest of the CSS remains the same) ... */
+
 .ant-typography, .ant-typography a {
   color: rgba(255, 255, 255, 0.85);
 }

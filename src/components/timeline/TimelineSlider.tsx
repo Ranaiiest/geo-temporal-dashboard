@@ -1,4 +1,3 @@
-// src/components/timeline/TimelineSlider.tsx
 import { Slider, Col, Row, Tooltip, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { setTimeRange } from '../../store/slices/timelineSlice';
@@ -41,7 +40,6 @@ export function TimelineSlider() {
     for (const poly of polygons) {
         dispatch(fetchPolygonData(poly.id));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedStart, selectedEnd, dispatch]);
 
 
@@ -57,7 +55,6 @@ export function TimelineSlider() {
     <div style={{ padding: '8px 16px', color: 'white' }}>
       <Row align="middle" gutter={8}>
         <Col span={5} style={{ textAlign: 'center' }}>
-          {/* THE FIX IS HERE: Reduced font sizes for mobile readability */}
           <Text type="secondary" style={{ fontSize: '11px' }}>Start</Text>
           <div style={{ fontSize: '12px', fontWeight: 'bold' }}>{format(parseISO(selectedStart), 'MMM d')}</div>
           <div style={{ fontSize: '11px' }}>{format(parseISO(selectedStart), 'HH:00')}</div>
@@ -94,7 +91,6 @@ export function TimelineSlider() {
           </Row>
         </Col>
         <Col span={5} style={{ textAlign: 'center' }}>
-          {/* THE FIX IS HERE: Reduced font sizes for mobile readability */}
           <Text type="secondary" style={{ fontSize: '11px' }}>End</Text>
           <div style={{ fontSize: '12px', fontWeight: 'bold' }}>{format(parseISO(selectedEnd), 'MMM d')}</div>
           <div style={{ fontSize: '11px' }}>{format(parseISO(selectedEnd), 'HH:00')}</div>
